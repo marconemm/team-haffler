@@ -1,17 +1,21 @@
 //Declaring elements from HTML:
-const numberOfMembers = Number(document.getElementById("numberOfMembers").value);
-const groupSize = Number(document.getElementById("groupSize").value);
+const inputNumberOfMembers = document.getElementById("numberOfMembers");
+const inputGroupSize = document.getElementById("groupSize");
 const btnHaffler = document.getElementById("btnHaffler");
 const showResult = document.getElementById("showResult");
 
 //Declaring variables:
 let haffleMaxrepeat = 0;
+let groupSize = 0;
 
 //Declaring the constants:
 const haffledGroupsList = [];
 const membersList = [];
 
 const resetLists = () => {
+
+    const numberOfMembers = Number(inputNumberOfMembers.value);
+    groupSize = Number(inputGroupSize.value);
 
     membersList.splice(0,numberOfMembers); // reset the "membersList"
     for (let i = 0; i < numberOfMembers; i++)
@@ -25,62 +29,38 @@ const resetLists = () => {
 
 btnHaffler.addEventListener("click", e => {
     
-    e.preventDefault();
     resetLists();
 
     for (let i = 0; i < haffleMaxrepeat; i++) {
         
-        console.log("...");
+        // console.log("...");
         const haffledMembersList = [];
         
         do {
-            const haffledMember = Math.round(Math.random() * Math.max(...membersList));
+            const minRandom = Math.min(...membersList);
+            const maxRandom = Math.max(...membersList);
+
+            // Get a random number between "minRandom" and "maxRandom":
+            const haffledMember = Math.round(Math.random() * ((maxRandom - minRandom) + minRandom));
             //Checks if the "haffledMember" is into "membersList":
             const isValidMember = membersList.some(member => member === haffledMember);
             
             if (isValidMember) {
-                console.log("Válido.");
+                // console.log("Válido.");
                 haffledMembersList.push(haffledMember);
                 membersList.splice(membersList.indexOf(haffledMember), 1) // remove the haffled member from "membersList".
-            } else
-                console.log("inválido.");
+            }
 
         } while (membersList.length > 0 && haffledMembersList.length < groupSize );
 
-        haffledGroupsList.push(haffledMembersList);
-
-
-
-    }
-    
-    // do {
-
-    //     const haffledMembersList = [];
-    //     const haffleList = [...membersList];
-    //     do {
-
-    //         console.log("...");
-    //         const haffledMember = Math.round(Math.random() * Math.max(...membersList));
-    //         //Checks if the "haffledMember" is into "membersList":
-    //         const isValidMember = (haffleList.findIndex(element => element === haffledMember) > 0) ? true : false;
-
-    //         // const isValidMember = (haffleList.findIndex(element => element === haffledMember) > 0) ? true : false;
-            
-    //         if (isValidMember) {
-    //             console.log("válido");
-    //             haffledMembersList.push(haffledMember);
-    //             // console.log(haffledMembersList);
-    //             haffleList.splice(haffleList.indexOf(haffledMember), 1); // remove the haffled member from "membersList".
-    //             // console.log(membersList);
-    //         } else
-    //             console.log("inválido");
-
-    //     } while (haffledMembersList.length < groupSize);
-
-    //     haffledGroupsList.push(haffledMembersList);
+        /*
+        Sort the "haffledMembersList" before push it into "haffledGroupsList"
         
-    // } while (haffledGroupsList.length < haffleMaxrepeat);
-            
+        
+        */
+
+        haffledGroupsList.push(haffledMembersList);
+    }       
     console.log(haffledGroupsList);
 
 }); // btnHaffler.addEventListener
