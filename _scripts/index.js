@@ -28,31 +28,59 @@ btnHaffler.addEventListener("click", e => {
     e.preventDefault();
     resetLists();
 
-  //  for (let i = 0; i < haffleMaxrepeat; i++) {
-           do {
-               const haffledMembersList = [];
-               const haffleList = [...membersList];
-                do {
-                    console.log("...");
-                    const haffledMember = Math.round(Math.random() * numberOfMembers);
-                    //Checks if the "haffledMember" is into "membersList":
-                    const isValidMember = (haffleList.findIndex(element => element === haffledMember) > 0) ? true : false;
-                    
-                    if (isValidMember) {
-                        console.log("válido");
-                        haffledMembersList.push(haffledMember);
-                        // console.log(haffledMembersList);
-                        haffleList.splice(haffleList.indexOf(haffledMember), 1); // remove the haffled member from "membersList".
-                        // console.log(membersList);
-                    } else
-                        console.log("inválido");
+    for (let i = 0; i < haffleMaxrepeat; i++) {
         
-                } while (haffledMembersList.length < groupSize);
+        console.log("...");
+        const haffledMembersList = [];
+        
+        do {
+            const haffledMember = Math.round(Math.random() * Math.max(...membersList));
+            //Checks if the "haffledMember" is into "membersList":
+            const isValidMember = membersList.some(member => member === haffledMember);
+            
+            if (isValidMember) {
+                console.log("Válido.");
+                haffledMembersList.push(haffledMember);
+                membersList.splice(membersList.indexOf(haffledMember), 1) // remove the haffled member from "membersList".
+            } else
+                console.log("inválido.");
 
-                haffledGroupsList.push(haffledMembersList);
-                
-            } while (haffledGroupsList.length < haffleMaxrepeat);
- //   }
+        } while (membersList.length > 0 && haffledMembersList.length < groupSize );
+
+        haffledGroupsList.push(haffledMembersList);
+
+
+
+    }
+    
+    // do {
+
+    //     const haffledMembersList = [];
+    //     const haffleList = [...membersList];
+    //     do {
+
+    //         console.log("...");
+    //         const haffledMember = Math.round(Math.random() * Math.max(...membersList));
+    //         //Checks if the "haffledMember" is into "membersList":
+    //         const isValidMember = (haffleList.findIndex(element => element === haffledMember) > 0) ? true : false;
+
+    //         // const isValidMember = (haffleList.findIndex(element => element === haffledMember) > 0) ? true : false;
+            
+    //         if (isValidMember) {
+    //             console.log("válido");
+    //             haffledMembersList.push(haffledMember);
+    //             // console.log(haffledMembersList);
+    //             haffleList.splice(haffleList.indexOf(haffledMember), 1); // remove the haffled member from "membersList".
+    //             // console.log(membersList);
+    //         } else
+    //             console.log("inválido");
+
+    //     } while (haffledMembersList.length < groupSize);
+
+    //     haffledGroupsList.push(haffledMembersList);
+        
+    // } while (haffledGroupsList.length < haffleMaxrepeat);
+            
     console.log(haffledGroupsList);
 
 }); // btnHaffler.addEventListener
