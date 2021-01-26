@@ -1,4 +1,22 @@
-* {
+:root {
     margin: auto;
-    display: flex;
+    text-align: center;
+    width: 95%;
+    height: 100%;
+}
+
+div {
+    margin: auto;
+    align-content: center;
+    width: fit-content;
+    display: grid;
+}
+
+input {
+    outline: none;
+}
+
+.btn {
+    margin: 1rem auto;
+    padding: 1rem;
 }

@@ -9,18 +9,21 @@
 <body>
     <main class="container">
         <header>
-            <h3>Qual a quantidade de membros para o sorteio?</h3>
+            <div>
+                <h3>Qual a quantidade de membros para o sorteio?</h3>
                 <input type="number" id="numberOfMembers" value="10">
+            </div>
+            <div>
                 <h3>Qual o tamanho das equipes?</h3>
                 <input type="number" id="groupSize" value="4">
-            <button class="btn" id="btnHaffler">Sortear</button>
+                <button class="btn" id="btnHaffler">Sortear</button>
+            </div>
         </header>
-        <section>
-            <label for="showResult">As equipes são:
-                <p id="showResult">(Resultado aqui)</p>
-            </label>
-        </section>
     </main>
+    <aside>
+            <p id="showResult">As equipes são:</p>
+            <output name="" for="showResult"></output>
+    </aside>
     <script src="_scripts/index.js"></script>
 </body>
 </html>

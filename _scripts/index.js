@@ -61,3 +61,5 @@ btnHaffler.addEventListener("click", e => {
     console.log(haffledGroupsList);
 
 }); // btnHaffler.addEventListener
+
+
