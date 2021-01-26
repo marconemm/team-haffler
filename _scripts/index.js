@@ -17,13 +17,13 @@ const resetLists = () => {
     const numberOfMembers = Number(inputNumberOfMembers.value);
     groupSize = Number(inputGroupSize.value);
 
-    membersList.splice(0,numberOfMembers); // reset the "membersList"
+    membersList.splice(0,membersList.length); // reset the "membersList"
     for (let i = 0; i < numberOfMembers; i++)
     membersList.push(i);
     
     haffleMaxrepeat = Math.ceil(numberOfMembers/groupSize);
     // console.log(haffleMaxrepeat, typeof(haffleMaxrepeat));
-    haffledGroupsList.splice(0, haffleMaxrepeat); // reset the "haffledGroupsList"
+    haffledGroupsList.splice(0, haffledGroupsList.length); // reset the "haffledGroupsList"
 
 }; //resetLists()
 
@@ -53,12 +53,9 @@ btnHaffler.addEventListener("click", e => {
 
         } while (membersList.length > 0 && haffledMembersList.length < groupSize );
 
-        /*
-        Sort the "haffledMembersList" before push it into "haffledGroupsList"
-        
-        
-        */
-
+        //Sort the "haffledMembersList" before push it into "haffledGroupsList":
+        haffledMembersList.sort((memberA , memberB) => (memberA > memberB) ? 1 : (memberA < memberB) ? -1 : 0);
+       
         haffledGroupsList.push(haffledMembersList);
     }       
     console.log(haffledGroupsList);
