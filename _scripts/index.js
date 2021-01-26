@@ -5,21 +5,28 @@ const btnHaffler = document.getElementById("btnHaffler");
 const showResult = document.getElementById("showResult");
 
 //Declaring variables:
+let haffleMaxrepeat = 0;
 
 //Declaring the constants:
 const haffledGroupsList = [];
 const membersList = [];
 
-btnHaffler.addEventListener("click", e => {
-    e.preventDefault();
-    
+const resetLists = () => {
+
     membersList.splice(0,numberOfMembers); // reset the "membersList"
     for (let i = 0; i < numberOfMembers; i++)
     membersList.push(i);
     
-    const haffleMaxrepeat = Math.ceil(numberOfMembers/groupSize);
+    haffleMaxrepeat = Math.ceil(numberOfMembers/groupSize);
     // console.log(haffleMaxrepeat, typeof(haffleMaxrepeat));
     haffledGroupsList.splice(0, haffleMaxrepeat); // reset the "haffledGroupsList"
+
+}; //resetLists()
+
+btnHaffler.addEventListener("click", e => {
+    
+    e.preventDefault();
+    resetLists();
 
   //  for (let i = 0; i < haffleMaxrepeat; i++) {
            do {
